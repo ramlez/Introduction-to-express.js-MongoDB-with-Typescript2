@@ -6,6 +6,7 @@ import path = require("path");
 
 import { logger } from './logger';
 
+
 let app = express();
 
 app.use(bodyParser.urlencoded({ limit: "100mb", extended: false }));
@@ -31,6 +32,8 @@ app.all("*", (req, res, next) => {
     logger.debug("Incoming request: " + req.originalUrl);
     next();
 });
+
+app.use(require("./routes"));
 
 let server = http
     .createServer(app)
