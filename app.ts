@@ -20,8 +20,6 @@ app.use(express.static(path.join(process.cwd(), "public")));
 // The below command sets the default view engine for express. Last time jade was renamed to https://github.com/pugjs/pug
 app.set("view engine", "jade")
 
-app.use(errorHandler);
-
 // Take look at the first paramater err        
 function errorHandler(err, req, res, next) {
     logger.error("Global error handler", err);
@@ -43,5 +41,7 @@ let server = http
 
         logger.debug(`Server is listening on ${host}:${port}`);
     });
+
+app.use(errorHandler);
 
 export = app;
