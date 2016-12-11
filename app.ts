@@ -1,10 +1,11 @@
 import http = require("http");
+import { logger } from './logger';
 
 http.createServer((req, res) => {
-    console.log(req);
+    logger.debug("Request", req);
 
     res.end(new Date().valueOf().toString());
 
 }).listen(3000, () => {
-    console.log("Server is listening on 3000 port");
+    logger.debug("Server is listening on 3000 port");
 });

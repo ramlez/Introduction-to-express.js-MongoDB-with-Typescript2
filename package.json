@@ -9,9 +9,11 @@
   "author": "Mateusz Gródek - ramlez.com",
   "license": "ISC",
   "dependencies": {
+    "log4js": "^1.0.1",
     "typescript": "^2.1.4"
   },
   "devDependencies": {
+    "@types/log4js": "0.0.32",
     "@types/node": "0.0.2"
   }
 }
