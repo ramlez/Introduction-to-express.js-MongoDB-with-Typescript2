@@ -1,0 +1,17 @@
+{
+  "name": "reset-ath-language-app",
+  "version": "1.0.0",
+  "description": "ResetATH Language APP - introduction to Express.js and MongoDB with Typescript",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mateusz Gródek - ramlez.com",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^2.1.4"
+  },
+  "devDependencies": {
+    "@types/node": "0.0.2"
+  }
+}
