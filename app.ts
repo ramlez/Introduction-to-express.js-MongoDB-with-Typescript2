@@ -3,9 +3,10 @@ import express = require("express");
 import bodyParser = require("body-parser");
 import cookieParser = require("cookie-parser");
 import path = require("path");
+import mongodb = require("mongodb");
 
 import { logger } from './logger';
-
+import dbClient = require("./database");
 
 let app = express();
 
@@ -33,15 +34,21 @@ app.all("*", (req, res, next) => {
 
 app.use(require("./routes"));
 
-let server = http
-    .createServer(app)
-    .listen(process.env.PORT || 3000, () => {
-        let host = server.address().address;
-        let port = server.address().port;
-
-        logger.debug(`Server is listening on ${host}:${port}`);
-    });
-
 app.use(errorHandler);
+
+dbClient.connect()
+    .then(db => {
+        let server = http
+            .createServer(app)
+            .listen(process.env.PORT || 3000, () => {
+                let host = server.address().address;
+                let port = server.address().port;
+
+                logger.debug(`Server is listening on ${host}:${port}`);
+            });
+    })
+    .catch(err => {
+        logger.error("Unable to connect to databse;", err);
+    });
 
 export = app;
