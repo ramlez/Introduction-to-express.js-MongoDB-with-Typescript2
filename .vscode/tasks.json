@@ -4,7 +4,7 @@
     "version": "0.1.0",
     "command": "${workspaceRoot}\\node_modules\\.bin\\tsc",
     "isShellCommand": true,
-    "showOutput": "always",
+    "showOutput": "silent",
     "echoCommand": true,
     "tasks": [
         {
