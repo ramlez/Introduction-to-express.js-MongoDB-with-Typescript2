@@ -13,13 +13,13 @@ router.post("/", (req, res, next) => {
             let results = WordExtracotrHelper.extract(req.body.text);
             logger.debug(JSON.stringify(results));
 
-            wordsService.save(results);
+            wordsService.save(results)
+                .then(insertedCount => res.json({ insertedCount: insertedCount }))
+                .catch(next);
 
-            res.sendStatus(200);
         } catch (error) {
             next(error);
         }
-
     } else {
         res.sendStatus(400);
     }

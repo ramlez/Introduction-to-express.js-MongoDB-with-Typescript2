@@ -1,17 +1,20 @@
 import { IWordStatisticsModel } from '../helpers/WordExtractorHelper';
-import dbClient = require("../database");
 import { logger } from '../logger';
+import dbClient = require("../database");
 
 export class WordsService {
 
     public save(words: IWordStatisticsModel[]) {
         let wordsToInsert = words.map(x => {
-            return { created: new Date(), ...x }
+            return { created: new Date(), ...x };
         });
 
         return dbClient.db.collection("words")
             .insertMany(wordsToInsert)
-            .then(res => logger.debug(`Inserted ${res.insertedCount}`));
+            .then(res => {
+                logger.debug(`Inserted ${res.insertedCount}`);
+                return res.insertedCount;
+            });
     }
 
     public getMostPopular(limit?: number) {
